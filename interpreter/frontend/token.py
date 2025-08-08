@@ -26,6 +26,19 @@ class TokenType(Enum):
     SYMBOL = auto()
     NUMBER = auto()
 
+    INVALID_TOKEN = -1
+    @classmethod
+    def _missing_(cls, value):
+        for member in cls:
+            if member.value == value:
+                return member
+        return cls(-1)
+
+PARENTHESES: list[TokenType] = [
+    TokenType.L_PAREN, TokenType.R_PAREN,
+    TokenType.L_BRACE, TokenType.R_BRACE,
+    TokenType.L_BRACKET, TokenType.R_BRACKET
+]
 
 
 
