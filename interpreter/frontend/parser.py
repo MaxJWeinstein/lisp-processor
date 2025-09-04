@@ -1,4 +1,4 @@
-from lexer import Lexer
+from .lexer import Lexer
 from ..intermediate.ast import AST
 from ..intermediate.symbol_table import SymbolTable
 

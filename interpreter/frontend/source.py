@@ -1,10 +1,10 @@
-from io import TextIOBase
+from io import TextIOWrapper
 
 class Source:
     EOL: str = "\n"
     EOF: str = "EOF"
 
-    def __init__(self, stream: TextIOBase):
+    def __init__(self, stream: TextIOWrapper):
         self._stream = stream
         self._line: str = ""
         self._line_num: int = 0
@@ -15,9 +15,9 @@ class Source:
             self._read_next_line()
             return self.current_char()
         if self._current_pos == len(self._line):
-            return EOL
+            return self.EOL
         if self._current_pos == -1:
-            return EOF
+            return self.EOF
         return self._line[self._current_pos]
 
     def next_char(self) -> str:
@@ -30,9 +30,9 @@ class Source:
 
         pos = self._current_pos + 1
         if pos == 0:
-            return EOF
+            return self.EOF
         if pos == len(self._line):
-            return EOL
+            return self.EOL
 
         return self._line[pos]
 

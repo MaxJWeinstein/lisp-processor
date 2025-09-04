@@ -1,9 +1,9 @@
-from enum import Enum, auto
+from enum import Enum
 
-from source import Source
+from .source import Source
 
 class TokenType(Enum):
-    EOF = auto()
+    EOF = -1
 
     L_PAREN = "("
     R_PAREN = ")"
@@ -23,10 +23,10 @@ class TokenType(Enum):
     TRUE = "#t"
     FALSE = "#f"
 
-    SYMBOL = auto()
-    NUMBER = auto()
+    SYMBOL = "symbol"
+    NUMBER = "number"
 
-    INVALID_TOKEN = -1
+    INVALID_TOKEN = None
     @classmethod
     def _missing_(cls, value):
         for member in cls:
